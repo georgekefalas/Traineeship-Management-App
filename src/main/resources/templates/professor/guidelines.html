@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" crossorigin="anonymous" />
+    <title>User Guidelines</title>
+    <style>
+
+        .guidelines-box {
+            max-width: 500px;
+            margin: 100px auto;
+            padding: 25px;
+            border: 1px solid #007bff;
+            border-radius: 8px;
+            background-color: #f8f9fa;
+            box-shadow: 0 0 10px rgba(0, 123, 255, 0.3);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="guidelines-box">
+        <h3 class="mb-4 text-primary">User Guidelines</h3>
+        <p>Welcome to the professor dashboard! Here you can:</p>
+        <ul>
+            <li>View your profile.</li>
+            <li>Manage the traineeship positions you supervise.</li>
+            <li>Logout securely from the system.</li>
+        </ul>
+        <p>If you need help, figure it the fuck out, it's not that hard.</p>
+        
+        <a th:href="@{/professor/dashboard}" class="btn btn-secondary mt-3">Back to Dashboard</a>
+    </div>
+    
+</body>
+
+</html>

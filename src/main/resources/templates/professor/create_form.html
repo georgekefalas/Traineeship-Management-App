@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+	<title>Professor Form</title>
+</head>
+
+<body>
+
+	<div class="container text-center mt-5">
+	    <h2 class= "display-4 mb-5">Create Your Professor Profile</h2>
+	
+	    <form th:action="@{/professor/create}" th:object="${professor}" method="post">
+	
+	        <label for="professorName">Full Name:</label>
+	        <input type="text" th:field="*{professorName}" id="professorName" required/><br/><br/>
+	
+	        <label>Interests:</label>
+			<div id="interests-container">
+			    <input type="text" th:field="*{interests[0]}" class="form-control mb-2" required/>
+			</div>
+			<button type="button" class="btn btn-sm btn-secondary mb-3" onclick="addField('interests-container', 'interests')">Add Interest</button><br/>
+	
+	        <button type="submit"class="btn btn-info col-2">Create Profile</button>
+	    </form>
+	    
+	</div>
+	
+	<script>
+		function addField(containerId, fieldName) {
+		    const container = document.getElementById(containerId);
+		    const index = container.children.length;
+		    const input = document.createElement("input");
+		
+		    input.setAttribute("type", "text");
+		    input.setAttribute("name", fieldName + "[" + index + "]");
+		    input.setAttribute("class", "form-control mb-2");
+		    input.required = true;
+		
+		    container.appendChild(input);
+		}
+	</script>
+	
+</body>
+</html>

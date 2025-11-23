@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>My Logbook</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+</head>
+<body>
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">My Logbook</h2>
+
+    <div th:if="${traineeship != null}">
+        
+        <!-- Always show form, with previous content if exists -->
+        <form th:action="@{'/student/fill-logbook/' + ${traineeship.id}}" method="post">
+            <div class="form-group">
+                <label for="logbookContent">Logbook content:</label>
+                <textarea class="form-control" id="logbookContent" name="logbookContent" rows="10"
+                          th:text="${traineeship.studentLogbook} ?: ''" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-success">Save Logbook</button>
+        </form>
+
+    </div>
+
+    <!-- if no assigned position -->
+    <div th:if="${traineeship == null}" class="alert alert-warning text-center mt-4">
+        You are not currently assigned to any traineeship.
+    </div>
+
+    <!-- Back button -->
+    <div class="text-center mt-4">
+        <a th:href="@{/student/dashboard}" class="btn btn-primary">Back to Dashboard</a>
+    </div>
+</div>
+
+</body>
+</html>

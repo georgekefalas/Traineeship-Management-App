@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+	<title>Student Dashboard</title>
+</head>
+
+<body>
+    <div class="container text-center mt-5">
+        
+        <h2 class="display-4 mb-5">Welcome to the Student Dashboard</h2>
+
+        	<div class="btn-group mb-4" role="group" aria-label="Dashboard buttons">
+
+			    <!-- View Profile button -->
+			    <a th:href="@{/student/profile}" class="btn btn-primary ml-2">My Profile</a>
+			
+			    <!-- View Apply/Unapply for Traineeship button (only shown if not assigned) -->
+			    <a th:if="${!assignStatus}"
+			       th:href="@{/student/apply}"
+			       th:classappend="${lookStatus} ? 'btn btn-danger ml-2' : 'btn btn-primary ml-2'"
+			       th:text="${lookStatus} ? 'Unapply for Traineeship' : 'Apply for Traineeship'">
+			    </a>
+			
+			    <!-- View Fill logbook button -->
+			    <a th:href="@{/student/logbook}" class="btn btn-primary ml-2">My Logbook</a>
+			
+			</div>
+			
+			<!-- ✅ Green message under buttons -->
+			<p th:if="${assignStatus}" class="text-success font-weight-bold h5">Traineeship in Progress</p>
+            
+            <br>
+            <!-- Logout button -->
+            <form th:action="@{/logout}" method="post">
+                <button type="submit" class="btn btn-danger">Logout</button>
+            </form>
+        
+    </div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+	<title>Committee Member Dashboard</title>
+</head>
+
+<body>
+    <div class="container text-center mt-5">
+        
+        <h2 class="display-4 mb-5">Welcome to the Committee Member Dashboard</h2>
+
+        	<div class="btn-group mb-4" role="group" aria-label="Dashboard buttons">
+            
+            	<!-- View Profile button -->
+            	<a th:href="@{/committee/profile}" class="btn btn-primary ml-2">My Profile</a>
+            	
+            	<!-- View Applicants -->
+        		<a th:href="@{/committee/applicants}" class="btn btn-primary ml-2">View Applicants</a>
+        		 
+        		<!-- View In-Progress Traineeships -->
+        		<a th:href="@{/committee/in-progress}" class="btn btn-primary ml-2">Traineeships In Progress</a>
+
+            </div>
+            
+            <!-- Logout button -->
+            <form th:action="@{/logout}" method="post">
+                <button type="submit" class="btn btn-danger">Logout</button>
+            </form>
+        
+    </div>
+</body>
+</html>

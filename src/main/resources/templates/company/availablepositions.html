@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+	<title>Company Positions</title>
+</head>
+
+
+
+<body>
+	
+	<div class="container text-center mt-5">
+	
+		<h2 class="display-4 mb-5">Company Available Positions</h2>
+	
+		<table class="table table-striped table-bordered">
+		        <thead class="thead-dark">
+		            <tr>
+						<th>ID</th>
+		                <th>Title</th>
+		                <th>Actions</th>
+						<th>Details</th>
+				
+		            </tr>
+		        </thead>
+	
+				<tbody>
+				      <tr th:each="position : ${positions}">
+					  <td th:text="${position.id}">Position ID</td>
+				      <td th:text="${position.title}">Position Title</td>
+					  <td>
+					  	
+						<form th:action="@{/company/deleteposition/{positionId}(positionId=${position.id})}" method="post">
+						<button type="submit" class="btn btn-danger">Delete</button>
+						</form>
+					  
+					  	</td>
+						
+						<td>
+										  	
+							<a th:href="@{/company/detail_pos/{positionId}(positionId=${position.id})}" class="btn btn-info">
+							        Details
+							    </a>
+				      </td>
+				          
+				      </tr>
+				      
+			</tbody>
+	   </table>
+	
+	
+		<div class="text-center mt-4">
+		      <a th:href="@{/company/dashboard}" class="btn btn-secondary">Back to Dashboard</a>
+			  </div>	    
+		</div>
+	
+</body>
+</html>
+
+

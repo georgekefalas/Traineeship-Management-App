@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <title>Application Submitted</title>
+</head>
+
+<body>
+<div class="container text-center mt-5">
+
+    <h2 class="display-4 mb-4">Traineeship Application Submitted</h2>
+    
+    <p class="lead mb-5"
+       th:text="${status} ? 'You have successfully expressed interest in finding a traineeship!' 
+                            : 'You have successfully unapplied for a traineeship.'" 
+       th:classappend="${status} ? 'text-success' : 'text-warning'">
+    </p>
+
+
+    <!-- Back to Dashboard button -->
+    <div class="text-center mt-4">
+        <a th:href="@{/student/dashboard}" class="btn btn-primary ml-2">Back to Dashboard</a>
+    </div>
+
+
+
+</div>
+</body>
+</html>

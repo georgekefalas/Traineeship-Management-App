@@ -1,0 +1,46 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Monitor Traineeship</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Evaluations</h2>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Evaluation</th>
+                <th>From</th>
+                <th>Motivation</th>
+                <th>Efficiency</th>
+                <th>Effectiveness</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="eval : ${evaluations}">
+                <td th:text="${eval.id}"></td>
+                <td th:text="${eval.type} ? 'Professor' : 'Company'"></td>
+                <td th:text="${eval.motivation}"></td>
+                <td th:text="${eval.efficiency}"></td>
+                <td th:text="${eval.effectiveness}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <form th:action="@{'/committee/terminate/' + ${positionId}}" method="post" class="mt-4">
+        <div class="form-group">
+            <label>Set Final Result:</label><br>
+            <input type="radio" name="result" value="pass" required> Pass<br>
+            <input type="radio" name="result" value="fail"> Fail
+        </div>
+        <button type="submit" class="btn btn-danger">Terminate Traineeship</button>
+    </form>      
+</div>
+ <div class="text-center mt-4">
+            <a th:href="@{/committee/dashboard}" class="btn btn-secondary ml-2">Back to Dashboard</a>
+     </div>
+
+</body>
+</html>

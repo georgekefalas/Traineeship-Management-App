@@ -1,0 +1,65 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Matching Positions</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5 text-center">
+    <h2 class="mb-4">Matching Positions for Student</h2>
+	
+	<form method="get" th:action="@{'/committee/matching-traineeships/' + ${studentUsername}}">
+	    <div class="form-group">
+	        <label for="strategy">Select Matching Strategy:</label>
+	        <select class="form-control" id="strategy" name="strategy">
+	            <option value="skillBasedStrategy" 
+	                th:selected="${selectedStrategy == 'skillBasedStrategy'}">Skill Based</option>	            
+	            <option value="locationBasedStrategy" 
+	                th:selected="${selectedStrategy == 'locationBasedStrategy'}">Location Based</option>
+	            <option value="interestBasedStrategy" 
+	                th:selected="${selectedStrategy == 'interestBasedStrategy'}">Interest Based</option>
+	            <option value="combinedBasedStrategy" 
+	                th:selected="${selectedStrategy == 'combinedBasedStrategy'}">All</option>
+	            
+	        </select>
+	    </div>
+	    <button type="submit" class="btn btn-primary">Apply Strategy</button>
+	</form>
+	
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Position ID</th>
+                <th>Title</th>
+                <th>Company</th>
+                <th>Location</th>
+                <th>Skills</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="pos : ${positions}">
+                <td th:text="${pos.id}"></td>
+                <td th:text="${pos.title}"></td>
+                <td th:text="${pos.company.companyName}"></td>
+                <td th:text="${pos.company.companyLocation}"></td>
+                <td th:text="${pos.skills}"></td>
+                <td>
+                    <form th:action="@{/committee/assign-traineeship}" method="post">
+                        <input type="hidden" name="positionId" th:value="${pos.id}" />
+                        <input type="hidden" name="studentUsername" th:value="${studentUsername}" />
+                        <button type="submit" class="btn btn-success btn-sm">Assign</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+ <div class="text-center mt-4">
+            <a th:href="@{/committee/applicants}" class="btn btn-secondary ml-2">Back to Applicants</a>
+            <a th:href="@{/committee/dashboard}" class="btn btn-secondary ml-2">Back to Dashboard</a>
+            
+     </div>
+</body>
+</html>

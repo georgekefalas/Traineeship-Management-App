@@ -1,0 +1,45 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>In Progress Traineeships</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5 text-center">
+    <h2 class="mb-4">Traineeships in Progress</h2>
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Student</th>
+                <th>Company</th>
+                <th>Supervisor</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="pos : ${positions}">
+                <td th:text="${pos.id}"></td>
+                <td th:text="${pos.student.username}"></td>
+                <td th:text="${pos.company.companyName}"></td>
+                <td th:text="${pos.supervisor != null ? pos.supervisor.username : 'N/A'}"></td>
+                <td>
+                	<!-- Show only if supervisor is null -->
+				    <a th:if="${pos.supervisor == null}"
+				       th:href="@{'/committee/available-professors?positionId=' + ${pos.id}}"
+				       class="btn btn-primary btn-sm ml-2">
+				        Show Available Professors
+				    </a>
+                    <a th:href="@{'/committee/monitor/' + ${pos.id}}" class="btn btn-info btn-sm">Monitor</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+ <div class="text-center mt-4">
+            <a th:href="@{/committee/dashboard}" class="btn btn-secondary ml-2">Back to Dashboard</a>
+     </div>
+</body>
+</html>

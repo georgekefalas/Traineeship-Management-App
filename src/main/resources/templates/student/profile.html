@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+	<title>My Profile</title>
+</head>
+
+<body>
+    <div class="container text-center mt-5">
+        <h2 class="display-4 mb-5">My Profile</h2>
+
+        <table class="table table-bordered w-50 mx-auto">
+            <tr>
+                <th>Username</th>
+                <td th:text="${student.username}">Username</td>
+            </tr>
+            <tr>
+                <th>Full Name</th>
+                <td th:text="${student.studentName}">Student Name</td>
+            </tr>
+            <tr>
+                <th>AM</th>
+                <td th:text="${student.AM}">AM</td>
+            </tr>
+            <tr>
+                <th>Average Grade</th>
+                <td th:text="${student.avgGrade}">Average Grade</td>
+            </tr>
+            <tr>
+                <th>Preferred Location</th>
+                <td th:text="${student.preferredLocation}">Preferred Location</td>
+            </tr>
+            <tr>
+			    <th>Interests</th>
+			    <td>
+			        <ul class="list-unstyled mb-0">
+			            <li th:each="interest : ${student.interests}" th:text="${interest}">Interest</li>
+			        </ul>
+			    </td>
+			</tr>
+			<tr>
+			    <th>Skills</th>
+			    <td>
+			        <ul class="list-unstyled mb-0">
+			            <li th:each="skill : ${student.skills}" th:text="${skill}">Skill</li>
+			        </ul>
+			    </td>
+			</tr>
+            
+            
+        </table>
+
+        <div class="text-center mt-4">
+            <a th:href="@{/student/dashboard}" class="btn btn-primary ml-2">Back to Dashboard</a>
+        </div>
+        
+    </div>
+    
+</body>
+</html>
+

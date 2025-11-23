@@ -1,0 +1,55 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Available Professors</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5 text-center">
+    <h2 class="mb-4">Available Professors</h2>
+	
+	<form method="get" th:action="@{/committee/available-professors}">
+	    <input type="hidden" name="positionId" th:value="${positionId}" />
+	    <div class="form-group">
+	        <label for="strategy">Select Professor Selection Strategy:</label>
+	        <select class="form-control" id="strategy" name="strategy">
+	            <option value="lowestWorkloadStrategy"
+	                th:selected="${selectedStrategy == 'lowestWorkloadStrategy'}">Lowest Workload Based</option>
+	            <option value="interestProfessorStrategy"
+	                th:selected="${selectedStrategy == 'interestProfessorStrategy'}">Interest Based</option>
+	        </select>
+	    </div>
+	    <button type="submit" class="btn btn-primary">Apply Strategy</button>
+	</form>
+	
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Full Name</th>
+                <th>Assigned Traineeships</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="prof : ${professors}">
+                <td th:text="${prof.username}"></td>
+                <td th:text="${prof.professorName}"></td>
+                <td th:text="${prof.positions.size()}"></td>
+                <td>
+                    <form th:action="@{/committee/assign-supervisor}" method="post" class="d-inline">
+                        <input type="hidden" name="positionId" th:value="${positionId}" />
+                        <input type="hidden" name="professorUsername" th:value="${prof.username}" />
+                        <button type="submit" class="btn btn-success btn-sm">Assign</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+ <div class="text-center mt-4">
+            <a th:href="@{/committee/dashboard}" class="btn btn-secondary ml-2">Back to Dashboard</a>
+     </div>
+</body>
+</html>

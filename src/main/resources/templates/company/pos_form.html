@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+	<title>Traineeship Position Form</title>
+</head>
+
+
+<body>
+	
+	<div class="container text-center mt-5">
+		<h2 class= "display-4 mb-5">Create a new Traineeship position</h2>
+		
+		<form th:action="@{/company/addposition}" th:object="${traineeshipPosition}" method="post">
+	
+		<label for="title">Title:</label>
+		<input type="text" th:field="*{title}" id="title" required/><br/><br/>
+		
+		<label for="description">Description:</label>
+		<textarea th:field="*{description}" id="description" required/><br/><br/>
+	
+		<label for="fromDate">From Date:</label>
+		<input type="date" th:field="*{fromDate}" id="fromDate" required/><br/><br/>
+	
+		<label for="toDate">To Date:</label>
+		<input type="date" th:field="*{toDate}" id="toDate" required/><br/><br/>
+		
+		<label>Topics:</label>
+	    <div id="topics-container">
+	        <input type="text" name="topics[0]" class="form-control mb-2" required/>
+	    </div>
+	    <button type="button" class="btn btn-secondary mb-3" onclick="addField('topics-container', 'topics')">Add Topic</button><br/>
+	
+	    <label>Skills:</label>
+	    <div id="skills-container">
+	        <input type="text" name="skills[0]" class="form-control mb-2" required/>
+	    </div>
+	    <button type="button" class="btn btn-secondary mb-3" onclick="addField('skills-container', 'skills')">Add Skill</button><br/>
+	
+	    <button type="submit" class="btn btn-info col-2">Create a Position</button>
+	    
+		</form>
+	</div>>
+	
+	<script>
+		function addField(containerId, fieldName) {
+		    const container = document.getElementById(containerId);
+		    const index = container.children.length;
+		    const input = document.createElement("input");
+		
+		    input.setAttribute("type", "text");
+		    input.setAttribute("name", fieldName + "[" + index + "]");
+		    input.setAttribute("class", "form-control mb-2");
+		    input.required = true;
+		
+		    container.appendChild(input);
+		}
+	</script>
+	
+</body>
+</html>
